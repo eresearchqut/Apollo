@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
+  build:
+    commands:
+      - LATEST_IMAGE_TAG="latest"
+      - export APP_VERSION=$(git describe --tags --abbrev=0 || echo '0.0')
+      - VERSION_IMAGE_TAG="${APP_VERSION}-${CODEBUILD_BUILD_NUMBER}"
+      - docker pull ${CONTAINER_REPOSITORY}:${LATEST_IMAGE_TAG} || true
+      - docker build --cache-from ${CONTAINER_REPOSITORY}:${LATEST_IMAGE_TAG} --tag ${CONTAINER_REPOSITORY}:${LATEST_IMAGE_TAG} .
+  post_build:
+    commands:
+      - docker push ${CONTAINER_REPOSITORY}:${LATEST_IMAGE_TAG}
+      - docker tag ${CONTAINER_REPOSITORY}:${LATEST_IMAGE_TAG} ${CONTAINER_REPOSITORY}:${VERSION_IMAGE_TAG}
+      - docker push ${CONTAINER_REPOSITORY}:${VERSION_IMAGE_TAG}
