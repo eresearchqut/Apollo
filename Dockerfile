@@ -37,6 +37,14 @@ RUN curl -s "http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat" -o
 	wget --quiet https://github.com/erasche/chado-schema-builder/releases/download/1.31-jenkins26/chado-1.31.sql.gz -O /chado.sql.gz && \
 	gunzip /chado.sql.gz
 
+RUN mkdir /tmp/blast && \
+	VERSION=$(curl -s https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/VERSION) && \
+	curl -s "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-${VERSION}+-x64-linux.tar.gz" -o /tmp/blast/blast.tar.gz && \
+	tar -zxf /tmp/blast/blast.tar.gz --strip-components=2 -C /tmp/blast/ && \
+	cp /tmp/blast/blastn /usr/local/bin/blastn && \
+	cp /tmp/blast/tblastn /usr/local/bin/tblastn && \
+	rm -rf /tmp/blast
+
 #NOTE, we had problems with the build the archive-file coming in from github so using a clone instead
 RUN npm i -g yarn &&  useradd -ms /bin/bash -d /apollo apollo
 COPY client /apollo/client
