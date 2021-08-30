@@ -43,7 +43,7 @@ RUN mkdir /tmp/blast && \
 	tar -zxf /tmp/blast/blast.tar.gz --strip-components=2 -C /tmp/blast/ && \
 	cp /tmp/blast/blastn /usr/local/bin/blastn && \
 	cp /tmp/blast/tblastn /usr/local/bin/tblastn && \
-	cp /tmp/blast/makembindex /usr/local/bin/makembindex && \
+	cp /tmp/blast/makeblastdb /usr/local/bin/makeblastdb && \
 	rm -rf /tmp/blast
 
 #NOTE, we had problems with the build the archive-file coming in from github so using a clone instead
