@@ -14,11 +14,10 @@ class ConfigWrapperService {
     def grailsApplication
     def servletContext
 
-    String getWebRootDir(){
-        if(servletContext!=null){
+    String getWebRootDir() {
+        if (servletContext != null) {
             return servletContext.getRealPath("/")
-        }
-        else{
+        } else {
             return "./"
         }
     }
@@ -27,11 +26,11 @@ class ConfigWrapperService {
         return grailsApplication.config.apollo.use_cds_for_new_transcripts
     }
 
-    Boolean getCountAnnotations(){
+    Boolean getCountAnnotations() {
         return grailsApplication.config.apollo.count_annotations
     }
 
-    Boolean getAddMergedComment(){
+    Boolean getAddMergedComment() {
         return grailsApplication.config.apollo.add_merged_comment
     }
 
@@ -39,39 +38,47 @@ class ConfigWrapperService {
         return grailsApplication.config.apollo.transcript_overlapper
     }
 
-  String getFaToTwobitExe() {
-    return grailsApplication.config.apollo.fa_to_twobit_exe
-  }
-
-  TranslationTable getTranslationTable() {
-        return SequenceTranslationHandler.getTranslationTableForGeneticCode(getTranslationCode(),getWebRootDir())
+    String getFaToTwobitExe() {
+        return grailsApplication.config.apollo.fa_to_twobit_exe
     }
 
-    String getTranslationCode(){
+    String getMakeBlastDbExe() {
+        return grailsApplication.config.apollo.make_blast_db_exe
+    }
+
+    TranslationTable getTranslationTable() {
+        return SequenceTranslationHandler.getTranslationTableForGeneticCode(getTranslationCode(), getWebRootDir())
+    }
+
+    String getTranslationCode() {
         return grailsApplication.config.apollo.get_translation_code.toString()
     }
 
-    Boolean hasDbxrefs(){
+    Boolean hasDbxrefs() {
         return grailsApplication.config.apollo.feature_has_dbxrefs
     }
-    Boolean hasAttributes(){
+
+    Boolean hasAttributes() {
         return grailsApplication.config.apollo.feature_has_attributes
     }
 
-    Boolean hasPubmedIds(){
+    Boolean hasPubmedIds() {
         return grailsApplication.config.apollo.feature_has_pubmed_ids
     }
-    Boolean hasGoIds(){
+
+    Boolean hasGoIds() {
         return grailsApplication.config.apollo.feature_has_go_ids
     }
-    Boolean hasComments(){
+
+    Boolean hasComments() {
         return grailsApplication.config.apollo.feature_has_comments
     }
-    Boolean hasStatus(){
+
+    Boolean hasStatus() {
         return grailsApplication.config.apollo.feature_has_status
     }
 
-    List<String> getSpliceDonorSites(){
+    List<String> getSpliceDonorSites() {
         List<String> sites = new ArrayList<String>()
         grailsApplication.config.apollo.splice_donor_sites.each {
             sites.add(it.toLowerCase())
@@ -79,7 +86,7 @@ class ConfigWrapperService {
         return sites
     }
 
-    List<String> getSpliceAcceptorSites(){
+    List<String> getSpliceAcceptorSites() {
         List<String> sites = new ArrayList<String>()
         grailsApplication.config.apollo.splice_acceptor_sites.each {
             sites.add(it.toLowerCase())
@@ -139,25 +146,25 @@ class ConfigWrapperService {
         grailsApplication.config.apollo.store_orig_id
     }
 
-    def getExtraTabs(){
+    def getExtraTabs() {
         return grailsApplication.config.apollo.extraTabs
     }
 
-    boolean getOnlyOwnersDelete(){
+    boolean getOnlyOwnersDelete() {
         return grailsApplication.config.apollo.only_owners_delete
     }
 
-    boolean getNativeTrackSelectorDefaultOn(){
+    boolean getNativeTrackSelectorDefaultOn() {
         return grailsApplication.config.apollo.native_track_selector_default_on
     }
 
-    String getGff3Source(){
-      return grailsApplication.config.gff3.source
+    String getGff3Source() {
+        return grailsApplication.config.gff3.source
     }
 
 
-    boolean getCalculateNonCanonicalSpliceSites(){
-       return grailsApplication.config.apollo.calculate_non_canonical_splice_sites
+    boolean getCalculateNonCanonicalSpliceSites() {
+        return grailsApplication.config.apollo.calculate_non_canonical_splice_sites
     }
 
 }

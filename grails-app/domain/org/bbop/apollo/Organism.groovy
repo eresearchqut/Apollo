@@ -15,6 +15,7 @@ class Organism implements JsonMetadata {
         genus nullable: true
         valid nullable: true
         blatdb nullable: true
+        blastdb nullable: true
         commonName nullable: false
         genomeFasta nullable: true
         obsolete nullable: true
@@ -34,6 +35,7 @@ class Organism implements JsonMetadata {
     boolean publicMode;
     boolean obsolete
     String blatdb;
+    String blastdb;
     String directory
     String genomeFasta
     String genomeFastaIndex

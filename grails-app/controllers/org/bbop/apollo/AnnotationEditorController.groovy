@@ -1185,7 +1185,11 @@ class AnnotationEditorController extends AbstractApolloController implements Ann
             permissionService.hasPermissions(inputObject, PermissionEnum.READ)
             Organism organism = preferenceService.getCurrentOrganismForCurrentUser(inputObject.getString(FeatureStringEnum.CLIENT_TOKEN.value))
             log.debug "Organism to string:  ${organism as JSON}"
-            render sequenceSearchService.searchSequence(inputObject, organism.getBlatdb())
+            if (inputObject.get('search').get('key').startsWith("blast")) {
+                render sequenceSearchService.searchSequence(inputObject, organism.getBlastdb())
+            } else {
+                render sequenceSearchService.searchSequence(inputObject, organism.getBlatdb())
+            }
         }
         catch (AnnotationException ae) {
             def error = [error: ae.message]

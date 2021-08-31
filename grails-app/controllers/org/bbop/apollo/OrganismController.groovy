@@ -302,6 +302,7 @@ class OrganismController {
           commonName: organismName,
           directory: trackService.commonDataDirectory,
           blatdb: requestObject.blatdb ?: "",
+          blastdb: requestObject.blastdb ?: "",
           genus: requestObject.genus ?: "",
           obsolete: false,
           valid: true,
@@ -407,6 +408,21 @@ class OrganismController {
                 } catch (e) {
                   log.error("Failed to create a twobit file ${e.message}")
                   organism.blatdb = ''
+                }
+              }
+
+              log.info "makeBlastDb exec file specified ${configWrapperService.makeBlastDbExe}"
+              if ((searchDatabaseDataFile == null || searchDatabaseDataFile.size == 0) && configWrapperService.getMakeBlastDbExe().size() > 0) {
+                try {
+                  String searchPath = fastaPath
+                  log.info "Creating blast index for ${searchPath}"
+                  String indexCommand = "${configWrapperService.makeBlastDbExe} -in ${searchPath} -parse_seqids -dbtype nucl"
+                  log.info "executing command '${indexCommand}"
+                  indexCommand.execute()
+                  organism.blastdb = searchPath
+                } catch (e) {
+                  log.error("Failed to create blast index ${e.message}")
+                  organism.blastdb = ''
                 }
               }
 
