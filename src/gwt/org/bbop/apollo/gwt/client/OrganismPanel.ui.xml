@@ -176,6 +176,14 @@
                         <b:Row styleName="{style.row}">
                             <b:Column size="XS_12" styleName="{style.widgetPanel}">
                                 <b:InputGroup>
+                                    <b:InputGroupAddon>Search database (blast)</b:InputGroupAddon>
+                                    <b:TextBox autoComplete="false" ui:field="blastdb" enabled="false"/>
+                                </b:InputGroup>
+                            </b:Column>
+                        </b:Row>
+                        <b:Row styleName="{style.row}">
+                            <b:Column size="XS_12" styleName="{style.widgetPanel}">
+                                <b:InputGroup>
                                     <b:InputGroupAddon>Non-default Translation Table</b:InputGroupAddon>
                                     <b:TextBox autoComplete="false" ui:field="nonDefaultTranslationTable"
                                                enabled="false"/>

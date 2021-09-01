@@ -25,6 +25,7 @@ public class OrganismInfo implements HasJSON{
     private String species ;
     private String directory ;
     private String blatdb ;
+    private String blastdb ;
 
     private Integer numFeatures ;
     private Integer variantEffectCount;
@@ -55,6 +56,14 @@ public class OrganismInfo implements HasJSON{
 
     public void setBlatDb(String blatdb) {
         this.blatdb = blatdb;
+    }
+
+    public String getBlastDb() {
+        return blastdb;
+    }
+
+    public void setBlastDb(String blastdb) {
+        this.blastdb = blastdb;
     }
 
     public Boolean getPublicMode() {
@@ -177,6 +186,9 @@ public class OrganismInfo implements HasJSON{
         }
         if(blatdb!=null) {
             payload.put("blatdb", new JSONString(blatdb));
+        }
+        if(blastdb!=null) {
+            payload.put("blastdb", new JSONString(blastdb));
         }
         if(genus!=null){
             payload.put("genus",new JSONString(genus));

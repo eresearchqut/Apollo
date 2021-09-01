@@ -254,6 +254,7 @@ class OrganismController {
     , @RestApiParam(name = "species", type = "string", paramType = RestApiParamType.QUERY, description = "species name")
     , @RestApiParam(name = "genus", type = "string", paramType = RestApiParamType.QUERY, description = "species genus")
     , @RestApiParam(name = "blatdb", type = "string", paramType = RestApiParamType.QUERY, description = "filesystem path for a BLAT database (e.g. a .2bit file) if not uploaded")
+    , @RestApiParam(name = "blastdb", type = "string", paramType = RestApiParamType.QUERY, description = "filesystem path for a BLAST database if not uploaded")
     , @RestApiParam(name = "publicMode", type = "boolean", paramType = RestApiParamType.QUERY, description = "a flag for whether the organism appears as in the public genomes list")
     , @RestApiParam(name = "commonName", type = "string", paramType = RestApiParamType.QUERY, description = "commonName for an organism")
     , @RestApiParam(name = "nonDefaultTranslationTable", type = "string", paramType = RestApiParamType.QUERY, description = "non-default translation table")
@@ -1320,6 +1321,7 @@ class OrganismController {
     , @RestApiParam(name = "species", type = "string", paramType = RestApiParamType.QUERY, description = "species name")
     , @RestApiParam(name = "genus", type = "string", paramType = RestApiParamType.QUERY, description = "species genus")
     , @RestApiParam(name = "blatdb", type = "string", paramType = RestApiParamType.QUERY, description = "filesystem path for a BLAT database (e.g. a .2bit file)")
+    , @RestApiParam(name = "blastdb", type = "string", paramType = RestApiParamType.QUERY, description = "filesystem path for a BLAST database")
     , @RestApiParam(name = "publicMode", type = "boolean", paramType = RestApiParamType.QUERY, description = "a flag for whether the organism appears as in the public genomes list")
     , @RestApiParam(name = "name", type = "string", paramType = RestApiParamType.QUERY, description = "a common name used for the organism")
     , @RestApiParam(name = "nonDefaultTranslationTable", type = "string", paramType = RestApiParamType.QUERY, description = "non-default translation table")
@@ -1618,6 +1620,7 @@ class OrganismController {
           id                        : organism.id,
           commonName                : organism.commonName,
           blatdb                    : organism.blatdb,
+          blastdb                   : organism.blastdb,
           genomeFasta               : organism.genomeFasta,
           genomeFastaIndex          : organism.genomeFastaIndex,
           directory                 : organism.directory,

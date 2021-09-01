@@ -46,6 +46,9 @@ public class OrganismInfoConverter {
         if (object.get("blatdb") != null && object.get("blatdb").isString() != null) {
             organismInfo.setBlatDb(object.get("blatdb").isString().stringValue());
         }
+        if (object.get("blastdb") != null && object.get("blastdb").isString() != null) {
+            organismInfo.setBlastDb(object.get("blastdb").isString().stringValue());
+        }
         if (object.get("nonDefaultTranslationTable") != null && object.get("nonDefaultTranslationTable").isString() != null) {
             organismInfo.setNonDefaultTranslationTable(object.get("nonDefaultTranslationTable").isString().stringValue());
         }
@@ -101,6 +104,9 @@ public class OrganismInfoConverter {
         }
         if (organismInfo.getBlatDb() != null) {
             object.put("blatdb", new JSONString(organismInfo.getBlatDb()));
+        }
+        if (organismInfo.getBlastDb() != null) {
+            object.put("blastdb", new JSONString(organismInfo.getBlastDb()));
         }
         if (organismInfo.getNonDefaultTranslationTable() != null) {
             object.put("nonDefaultTranslationTable", new JSONString(organismInfo.getNonDefaultTranslationTable()));

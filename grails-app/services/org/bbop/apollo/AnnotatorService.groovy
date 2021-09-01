@@ -62,6 +62,7 @@ class AnnotatorService {
                 id                        : organism.id as Long,
                 commonName                : organism.commonName,
                 blatdb                    : organism.blatdb,
+                blastdb                   : organism.blastdb,
                 directory                 : organism.directory,
                 annotationCount           : annotationCountMap.get(organism) ?: 0,
                 sequences                 : sequenceCount,

@@ -57,6 +57,8 @@ public class OrganismPanel extends Composite {
     @UiField
     TextBox blatdb;
     @UiField
+    TextBox blastdb;
+    @UiField
     CheckBox publicMode;
     @UiField
     CheckBox obsoleteButton;
@@ -339,6 +341,9 @@ public class OrganismPanel extends Composite {
         blatdb.setText(organismInfo.getBlatDb());
         blatdb.setEnabled(isEditable);
 
+        blastdb.setText(organismInfo.getBlastDb());
+        blastdb.setEnabled(isEditable);
+
         genus.setText(organismInfo.getGenus());
         genus.setEnabled(isEditable);
 
@@ -552,6 +557,7 @@ public class OrganismPanel extends Composite {
         organismInfo.setGenus(genus.getText());
         organismInfo.setSpecies(species.getText());
         organismInfo.setBlatDb(blatdb.getText());
+        organismInfo.setBlastDb(blastdb.getText());
         organismInfo.setNonDefaultTranslationTable(nonDefaultTranslationTable.getText());
         organismInfo.setPublicMode(publicMode.getValue());
         organismInfo.setObsolete(obsoleteButton.getValue());
@@ -633,6 +639,14 @@ public class OrganismPanel extends Composite {
     public void handleBlatDbChange(ChangeEvent changeEvent) {
         if (singleSelectionModel.getSelectedObject() != null) {
             singleSelectionModel.getSelectedObject().setBlatDb(blatdb.getText());
+            updateOrganismInfo();
+        }
+    }
+
+    @UiHandler("blastdb")
+    public void handleBlastDbChange(ChangeEvent changeEvent) {
+        if (singleSelectionModel.getSelectedObject() != null) {
+            singleSelectionModel.getSelectedObject().setBlastDb(blastdb.getText());
             updateOrganismInfo();
         }
     }
@@ -759,6 +773,7 @@ public class OrganismPanel extends Composite {
         genus.setEnabled(enabled);
         species.setEnabled(enabled);
         blatdb.setEnabled(enabled);
+        blastdb.setEnabled(enabled);
         nonDefaultTranslationTable.setEnabled(enabled);
         publicMode.setEnabled(enabled);
         obsoleteButton.setEnabled(enabled);
@@ -771,6 +786,7 @@ public class OrganismPanel extends Composite {
         genus.setText("");
         species.setText("");
         blatdb.setText("");
+        blastdb.setText("");
         nonDefaultTranslationTable.setText("");
         publicMode.setValue(false);
         obsoleteButton.setValue(false);
