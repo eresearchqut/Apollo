@@ -1386,6 +1386,12 @@ class OrganismController {
           organism.blatdb = organism.blatdb
         }
 
+        if (organismJson.blastdb) {
+          organism.blastdb = organismJson.blastdb
+        } else {
+          organism.blastdb = organism.blastdb
+        }
+
         if (checkOrganism(organism)) {
           if (madeObsolete) {
             // TODO: remove all organism permissions
