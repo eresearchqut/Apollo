@@ -94,8 +94,14 @@ RUN /bin/bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && /bin/bash /bin/buil
 USER root
 # remove from webapps and copy it into a staging directory
 RUN rm -rf ${CATALINA_BASE}/webapps/* && \
-	cp /apollo/apollo*.war ${CATALINA_BASE}/apollo.war
+	cp /apollo/apollo*.war ${CATALINA_BASE}/webapps/.war
 
 ADD docker-files/createenv.sh /createenv.sh
 ADD docker-files/launch.sh /launch.sh
 CMD "/launch.sh"
+
+RUN mkdir -p /var/lib/tomcat9/temp && \
+	chown -R tomcat:tomcat /var/lib/tomcat9/webapps && \
+	chown -R tomcat:tomcat /var/lib/tomcat9/temp
+
+USER tomcat
