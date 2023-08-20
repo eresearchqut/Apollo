@@ -1,3 +1,27 @@
+## 2.7.0
+
+Features
+
+- Add info icon with tooltip describing meaning of fmin and fmax in "Partial". @garrettjstevens. [2649](https://github.com/GMOD/Apollo/pull/2649).
+
+Infrastructure Changes
+
+- Upgrade Log4j to 2.19.0. Thanks @cmdcolin. [2654](https://github.com/GMOD/Apollo/pull/2654).
+  - Due to this change, export of instructor reports is no longer available
+
+
+## 2.6.6
+
+Features
+
+- Update Docker container to use Ubuntu 20.04 as the base image (was 18.04). Thanks @christabone. [2645](https://github.com/GMOD/Apollo/pull/2645)
+
+Bug Fixes
+
+- Fix typo in Docker docs. Thanks @christabone. [2638](https://github.com/GMOD/Apollo/pull/2638)
+- Use `fmin` and `fmax` instead of `3'` and `5'` in the UI when marking feature ends as partial. This more accurately reflects how Apollo stores the data about partials. [2646](https://github.com/GMOD/Apollo/pull/2646)
+
+
 ## 2.6.5
 
 Features
