@@ -3,7 +3,7 @@ phases:
   pre_build:
     commands:
       - ECR_PASSWORD=$(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
-      - echo $ECR_PASSWORD | docker login --username AWS --password-stdin $AWS_ACCCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo $ECR_PASSWORD | docker login --username AWS --password-stdin $CONTAINER_REPOSITORY
   build:
     commands:
       - LATEST_IMAGE_TAG="latest"
