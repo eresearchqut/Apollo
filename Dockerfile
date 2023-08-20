@@ -85,7 +85,7 @@ RUN pip3 install nose apollo==4.2.10
 # install grails
 USER apollo
 
-RUN curl -s get.sdkman.io | bash && \
+RUN curl -s https://get.sdkman.io | bash && \
 	/bin/bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && yes | sdk install grails 2.5.5" && \
 	/bin/bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && yes | sdk install gradle 3.2.1"
 
