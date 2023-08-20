@@ -2,8 +2,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - echo $DOCKERHUB_PASSWORD | docker login --username $DOCKERHUB_USERNAME --password-stdin
+      - ECR_PASSWORD=$(aws ecr get-login-password --region $AWS_DEFAULT_REGION)
+      - echo $ECR_PASSWORD | docker login --username AWS --password-stdin $AWS_ACCCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - LATEST_IMAGE_TAG="latest"
